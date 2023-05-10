@@ -4,7 +4,7 @@ import {useEffect, createContext, useState} from "react"
 
 const AuthContext = createContext();
 const petFinderKey = 'QufLibwW1Ry9MKuZ98gbJKmWW8W97OZ5QtdhUVCg9eNx7dS7J5';
-const petFinderSecret = 'QssvzFWwIoOXBNM89H19a3FyjoFfR0MsWp7k3Pcm';
+const petFinderSecret = 'j2QYq1IjYch4jiA9sBchLPhYRQmIXnJRgSdCKYsV';
 
 
 export default function App({ Component, pageProps }) {
@@ -23,18 +23,18 @@ export default function App({ Component, pageProps }) {
           body: params
         }
       );
-      console.log(await petFinderRes.json)
+      const tolken = await petFinderRes.json()
+      setAccessToken(tolken)
     }
-    fetchAccessToken()
+    fetchAccessToken();
+    console.log(accessToken)
   }, [])
 
-
-
-
-
-  return
-  <AuthContext.Provider value={accessToken}>
+  return(
+      <AuthContext.Provider value={accessToken}>
         <Component {...pageProps} />
-  </AuthContext.Provider>
+      </AuthContext.Provider>
+  )
+
 
 }
